@@ -18,7 +18,7 @@ contract FaceterToken is Ownable, BurnableToken, StandardToken {
 	}
 
 	function FaceterToken(address holder, address buffer) public {
-    	Transfer(address(0), holder, balances[holder] = totalSupply_ = uint256(10)**(9 + decimals));
+		Transfer(address(0), holder, balances[holder] = totalSupply_ = uint256(10)**(9 + decimals));
 		addToWhitelist(holder);
 		addToWhitelist(buffer);
 	}
