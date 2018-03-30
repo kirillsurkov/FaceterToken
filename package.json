@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "truffle-hdwallet-provider": "git://github.com/kirillsurkov/truffle-hdwallet-provider.git"
+    "truffle-hdwallet-provider": "git://github.com/kirillsurkov/truffle-hdwallet-provider.git",
+    "zeppelin-solidity": "^1.8.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
