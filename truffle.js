@@ -3,7 +3,7 @@ const HDWalletProvider = require("truffle-hdwallet-provider");
 const bufferKey = ["ce2eab5......."]; // buffer private key
 
 module.exports = {
-    networks: {
+	networks: {
 		test: {
 			network_id: "*",
 			provider: TestRPC.provider({
@@ -12,18 +12,18 @@ module.exports = {
 			}),
 			gas: 4000000
 		},
-        ropsten: {
-            provider: () => new HDWalletProvider(bufferKey, "https://ropsten.infura.io"),
-            network_id: 3,
-            gas: 4500000,
-            gasPrice: 40000000000
-        }
-    },
-    network: "ropsten",
-    solc: {
-        optimizer: {
-            enabled: true,
-            runs: 200
-        }
-    }
+		ropsten: {
+			provider: () => new HDWalletProvider(bufferKey, "https://ropsten.infura.io"),
+			network_id: 3,
+			gas: 4500000,
+			gasPrice: 40000000000
+		}
+	},
+	network: "ropsten",
+	solc: {
+		optimizer: {
+			enabled: true,
+			runs: 200
+		}
+	}
 };
