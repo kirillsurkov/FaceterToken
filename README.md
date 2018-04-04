@@ -1,8 +1,21 @@
 # FaceterToken
 
-To install dependencies, run:
+Install dependencies:
 ```bash
 npm install
-cd web3usage
-npm install
+```
+
+Compile contracts:
+```bash
+truffle compile
+```
+
+Run tests:
+```bash
+truffle test --network test
+```
+
+Deployment:
+```bash
+truffle migrate
 ```
