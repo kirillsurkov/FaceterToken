@@ -62,7 +62,7 @@ async function main(contractAddress, bufferKey, customerKey) {
 	} else console.log("can't proceed with empty buffer");
 }
 
-const contractAddress = "0x5964010b17ef7c3324887d4b951abbea18667c3c";
-const bufferKey = "0xce2eab5.......";
-const customerKey = "0x46c36f1.......";
+const contractAddress = "0x5964010b17ef7c3324887d4b951abbea18667c3c"; // contract address
+const bufferKey = "0xce2eab5......."; // private key of buffer used in contract constructor
+const customerKey = "0x46c36f1......."; // private key of customer for tests
 main(contractAddress, bufferKey, customerKey);
