@@ -15,7 +15,7 @@ Run tests:
 truffle test --network test
 ```
 
-Deployment:
+Deploy:
 ```bash
 truffle migrate
 ```
