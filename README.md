@@ -1,5 +1,10 @@
 # FaceterToken
 
+Download:
+```bash
+git clone https://github.com/kirillsurkov/FaceterToken.git
+```
+
 Install dependencies:
 ```bash
 npm install
