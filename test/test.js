@@ -1,3 +1,4 @@
+const BigNumber = require("bignumber.js");
 const FaceterToken = artifacts.require("./FaceterToken.sol");
 const FaceterTokenLock = artifacts.require("./FaceterTokenLockV2.sol");
 const THREE_MONTHS = 7948800;
@@ -5,7 +6,9 @@ const THREE_MONTHS = 7948800;
 contract("FaceterToken", async accounts => {
 	it("test unlock()", async () => {
 		let faceterToken = await FaceterToken.deployed();
-		let faceterTokenLock = FaceterTokenLock.at(await faceterToken.holder());
+		const buffer = accounts[0];
+		const holder = await faceterToken.holder();
+		let faceterTokenLock = FaceterTokenLock.at(holder);
 		let incTime = seconds => new Promise(next =>
 			web3.currentProvider.sendAsync({jsonrpc: "2.0", method: "evm_increaseTime", params: [seconds], id: 0}, () =>
 				web3.currentProvider.sendAsync({jsonrpc: "2.0", method: "evm_mine", id: 0}, next)
@@ -19,8 +22,13 @@ contract("FaceterToken", async accounts => {
 			}
 			return true;
 		};
+		let amount = new BigNumber("18750000000000000000000000");
 		for (let i = 0; i < 10; i++) {
-			assert.equal(await unlock(), !(i == 0 || i == 9));
+			let bufferBalance = await faceterToken.balanceOf(buffer);
+			let holderBalance = await faceterToken.balanceOf(holder);
+			let unlocked = await unlock();
+			assert.equal(unlocked, !(i == 0 || i == 9));
+			assert.equal((await faceterToken.balanceOf(buffer)).toString(), bufferBalance.plus(unlocked ? (i == 8 ? holderBalance : amount) : 0).toString());
 			await incTime(THREE_MONTHS);
 		}
 	});
