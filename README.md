@@ -3,6 +3,7 @@
 Download:
 ```bash
 git clone https://github.com/kirillsurkov/FaceterToken.git
+cd FaceterToken
 ```
 
 Install dependencies:
