@@ -3,6 +3,7 @@ pragma solidity 0.4.20;
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "zeppelin-solidity/contracts/token/ERC20/BurnableToken.sol";
 import "zeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
+import "contracts/FaceterTokenLockV2.sol";
 
 contract FaceterToken is Ownable, BurnableToken, StandardToken {
 	string public constant name = "Faceter Token";
@@ -11,15 +12,18 @@ contract FaceterToken is Ownable, BurnableToken, StandardToken {
 
 	bool public paused = true;
 	mapping(address => bool) public whitelist;
+	FaceterTokenLockV2 public holder;
 
 	modifier whenNotPaused() {
 		require(!paused || whitelist[msg.sender]);
 		_;
 	}
 
-	function FaceterToken(address holder, address buffer) public {
-		Transfer(address(0), holder, balances[holder] = totalSupply_ = uint256(10)**(9 + decimals));
-		addToWhitelist(holder);
+	function FaceterToken(address buffer) public onlyOwner {
+		holder = new FaceterTokenLockV2(buffer);
+		address _holder = address(holder);
+		Transfer(address(0), _holder, balances[_holder] = totalSupply_ = uint256(10)**(9 + decimals));
+		addToWhitelist(_holder);
 		addToWhitelist(buffer);
 	}
 

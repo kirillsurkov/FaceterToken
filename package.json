@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "ethereumjs-testrpc": "^6.0.3",
     "truffle-hdwallet-provider": "git://github.com/kirillsurkov/truffle-hdwallet-provider.git",
     "zeppelin-solidity": "^1.8.0"
   },
