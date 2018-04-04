@@ -20,6 +20,12 @@ Run tests:
 truffle test --network test
 ```
 
+Configure:
+```javascript
+// truffle.js
+const bufferKey = ["ce2eab5......."]; // buffer private key
+```
+
 Deploy:
 ```bash
 truffle migrate
